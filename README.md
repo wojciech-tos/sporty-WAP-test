@@ -15,8 +15,9 @@
 - Run
 > pytest --html=report.html
 
-After test succeeds a screenshot and report will be generated in main folder (**screenshot.png** and **report.html**)
+After test succeeds a screenshot and report will be generated in main folder (**screenshot.png** and **report.html**).
 
+## Test description
 | Step | Verification |
 | ------ | ------ |
 | close_cookies_consent_if_visible | check if cookies popup exists and if yes click accept |
