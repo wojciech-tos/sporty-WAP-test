@@ -1,4 +1,4 @@
 pytest
 pytest-html
-pytest-loop
 selenium
+webdriver_manager

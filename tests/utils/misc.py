@@ -6,7 +6,7 @@ from time import sleep
 
 class Misc:
     def save_screenshot(driver):
-        driver.save_screenshot('./twitch_mobile_screenshot.png')
+        driver.save_screenshot('./screenshot.png')
 
     def scroll_down(driver):
         driver.execute_script('window.scrollTo(0, 2000);')
