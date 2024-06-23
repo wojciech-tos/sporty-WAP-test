@@ -9,26 +9,29 @@ PRIVACY_POPUP_CSS = f'.tw-modal'
 PRIVACY_POPUP_BUTTON_CSS = f'{PRIVACY_POPUP_CSS} button'
 
 class CookiesPopups:
-    def get_cookies_popup(driver):
-        return driver.find_element(By.CSS_SELECTOR, COOKIES_POPUP_CSS)
+    def __init__(self, driver):
+        self.driver = driver
 
-    def click_accept_cookies(driver):
-        return driver.find_element(By.CSS_SELECTOR, COOKIES_ACCEPT_BUTTON_CSS).click()
+    def get_cookies_popup(self):
+        return self.driver.find_element(By.CSS_SELECTOR, COOKIES_POPUP_CSS)
 
-    def click_close_privacy_info(driver):
-        return driver.find_element(By.CSS_SELECTOR, PRIVACY_POPUP_BUTTON_CSS).click()
+    def click_accept_cookies(self):
+        return self.driver.find_element(By.CSS_SELECTOR, COOKIES_ACCEPT_BUTTON_CSS).click()
 
-    def cookies_consent_workaround(driver):
-        popup = CookiesPopups.get_cookies_popup(driver)
-        driver.execute_script('arguments[0].setAttribute("style", "display: none;")', popup)
+    def click_close_privacy_info(self):
+        return self.driver.find_element(By.CSS_SELECTOR, PRIVACY_POPUP_BUTTON_CSS).click()
 
-    def close_cookies_consent_if_visible(driver):
-        elements = driver.find_elements(By.CSS_SELECTOR, COOKIES_POPUP_CSS)
+    def cookies_consent_workaround(self):
+        popup = self.get_cookies_popup()
+        self.driver.execute_script('arguments[0].setAttribute("style", "display: none;")', popup)
+
+    def close_cookies_consent_if_visible(self):
+        elements = self.driver.find_elements(By.CSS_SELECTOR, COOKIES_POPUP_CSS)
         if len(elements) > 0:
-            CookiesPopups.click_accept_cookies(driver)
-            CookiesPopups.cookies_consent_workaround(driver)
+            self.click_accept_cookies()
+            self.cookies_consent_workaround()
 
-    def close_privacy_info_popup_if_visible(driver):
-        elements = driver.find_elements(By.CSS_SELECTOR, PRIVACY_POPUP_CSS)
+    def close_privacy_info_popup_if_visible(self):
+        elements = self.driver.find_elements(By.CSS_SELECTOR, PRIVACY_POPUP_CSS)
         if len(elements) > 0:
-            CookiesPopups.click_close_privacy_info(driver)
+            self.click_close_privacy_info()
